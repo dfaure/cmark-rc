@@ -7,7 +7,7 @@ if(POLICY CMP0092)
   cmake_policy(SET CMP0092 NEW)
 endif()
 
-project(cmark
+project(cmark-rc
   LANGUAGES C CXX
   VERSION 0.31.1)
 

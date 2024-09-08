@@ -2,12 +2,13 @@ cmark
 =====
 
 [![CI
-tests](https://github.com/commonmark/cmark/workflows/CI%20tests/badge.svg)](https://github.com/commonmark/cmark/actions)
+tests](https://github.com/dfaure/cmark-rc/workflows/CI%20tests/badge.svg)](https://github.com/dfaure/cmark-rc/actions)
 
-`cmark` is the C reference implementation of [CommonMark], a
-rationalized version of Markdown syntax with a [spec][the spec].
-(For the JavaScript reference implementation, see
-[commonmark.js].)
+`cmark-rc` is a modified version of the C reference implementation of [CommonMark], a
+rationalized version of Markdown syntax with a spec. This repository changes
+the logic to match the one used by Rocket.Chat, as defined in [spec][the spec].
+
+The rest of the README is preserved as-is from the upstream source.
 
 It provides a shared library (`libcmark`) with functions for parsing
 CommonMark documents to an abstract syntax tree (AST), manipulating

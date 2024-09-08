@@ -28,9 +28,9 @@ add_library(cmark
   xml.c)
 cmark_add_compile_options(cmark)
 set_target_properties(cmark PROPERTIES
-  OUTPUT_NAME "cmark"
+  OUTPUT_NAME "cmark-rc"
   # Avoid name clash between PROGRAM and LIBRARY pdb files.
-  PDB_NAME libcmark
+  PDB_NAME libcmark-rc
   POSITION_INDEPENDENT_CODE YES
   # Include minor version and patch level in soname for now.
   SOVERSION ${PROJECT_VERSION}
@@ -55,7 +55,7 @@ add_executable(cmark_exe
   main.c)
 cmark_add_compile_options(cmark_exe)
 set_target_properties(cmark_exe PROPERTIES
-  OUTPUT_NAME "cmark"
+  OUTPUT_NAME "cmark-rc"
   INSTALL_RPATH "${Base_rpath}")
 target_link_libraries(cmark_exe PRIVATE
   cmark)
@@ -72,7 +72,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libcmark.pc
 
 install(FILES
   cmark.h
-  ${CMAKE_CURRENT_BINARY_DIR}/cmark_export.h
+  ${CMAKE_CURRENT_BINARY_DIR}/cmark-rc_export.h
   ${CMAKE_CURRENT_BINARY_DIR}/cmark_version.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
   )
