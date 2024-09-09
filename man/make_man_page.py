@@ -50,9 +50,9 @@ def md2man(text):
 comment_start_re = re.compile(r'^\/\*\* ?')
 comment_delim_re = re.compile(r'^[/ ]\** ?')
 comment_end_re = re.compile(r'^ \**\/')
-function_re = re.compile(r'^ *(?:CMARK_EXPORT\s+)?(?P<type>(?:const\s+)?\w+(?:\s*[*])?)\s*(?P<name>\w+)\s*\((?P<args>[^)]*)\)')
+function_re = re.compile(r'^ *(?:CMARK_RC_EXPORT\s+)?(?P<type>(?:const\s+)?\w+(?:\s*[*])?)\s*(?P<name>\w+)\s*\((?P<args>[^)]*)\)')
 blank_re = re.compile(r'^\s*$')
-macro_re = re.compile(r'CMARK_EXPORT *')
+macro_re = re.compile(r'CMARK_RC_EXPORT *')
 typedef_start_re = re.compile(r'typedef.*{$')
 typedef_end_re = re.compile(r'}')
 single_quote_re = re.compile(r"(?<!\w)'([^']+)'(?!\w)")
@@ -133,5 +133,5 @@ with open(sourcefile, 'r') as cmarkh:
             chunk = []
             mdlines.append('\n')
 
-sys.stdout.write('.TH ' + os.path.basename(sourcefile).replace('.h','') + ' 3 "' + date.today().strftime('%B %d, %Y') + '" "cmark ' + cmark_version_string().decode('utf-8') + '" "Library Functions Manual"\n')
+sys.stdout.write('.TH ' + os.path.basename(sourcefile).replace('.h','') + ' 3 "' + date.today().strftime('%B %d, %Y') + '" "cmark-rc ' + cmark_version_string().decode('utf-8') + '" "Library Functions Manual"\n')
 sys.stdout.write(''.join(mdlines))
