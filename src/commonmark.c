@@ -388,6 +388,14 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
     }
     break;
 
+  case CMARK_NODE_STRIKE:
+    if (entering) {
+      LIT("~");
+    } else {
+      LIT("~");
+    }
+    break;
+
   case CMARK_NODE_EMPH:
     if (entering) {
       LIT("_");

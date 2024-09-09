@@ -26,6 +26,7 @@ static const char *RIGHTSINGLEQUOTE = "\xE2\x80\x99";
 #define make_softbreak(mem) make_simple(mem, CMARK_NODE_SOFTBREAK)
 #define make_emph(mem) make_simple(mem, CMARK_NODE_EMPH)
 #define make_strong(mem) make_simple(mem, CMARK_NODE_STRONG)
+#define make_strike(mem) make_simple(mem, CMARK_NODE_STRIKE)
 
 #define MAXBACKTICKS 1000
 
@@ -683,6 +684,7 @@ static void process_emphasis(subject *subj, bufsize_t stack_bottom) {
                 (closer->can_open ? 3 : 0) + (closer->length % 3);
         break;
       case '*':
+      case '~': // Hack
         openers_bottom_index = 8 +
                 (closer->can_open ? 3 : 0) + (closer->length % 3);
         break;
@@ -708,7 +710,7 @@ static void process_emphasis(subject *subj, bufsize_t stack_bottom) {
         opener = opener->previous;
       }
       old_closer = closer;
-      if (closer->delim_char == '*' || closer->delim_char == '_') {
+      if (closer->delim_char == '*' || closer->delim_char == '_' || closer->delim_char == '~') {
         if (opener_found) {
           closer = S_insert_emph(subj, opener, closer);
         } else {
@@ -785,7 +787,12 @@ static delimiter *S_insert_emph(subject *subj, delimiter *opener,
 
   // create new emph or strong, and splice it in to our inlines
   // between the opener and closer
-  emph = closer->delim_char == '_' ? make_emph(subj->mem) : make_strong(subj->mem);
+  if (closer->delim_char == '_')
+    emph = make_emph(subj->mem);
+  else if (closer->delim_char == '~')
+    emph = make_strike(subj->mem);
+  else /* '*' */
+    emph = make_strong(subj->mem);
 
   tmp = opener_inl->next;
   if (tmp && tmp != closer_inl) {
@@ -1285,14 +1292,14 @@ static cmark_node *handle_newline(subject *subj) {
 }
 
 static bufsize_t subject_find_special_char(subject *subj, int options) {
-  // "\r\n\\`&_*[]<!"
+  // "\r\n\\`&_*[]<!" plus '~'
   static const int8_t SPECIAL_CHARS[256] = {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1,
       1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1357,6 +1364,7 @@ static int parse_inline(subject *subj, cmark_node *parent, int options) {
     break;
   case '*':
   case '_':
+  case '~':
   case '\'':
   case '"':
     new_inl = handle_delim(subj, c, (options & CMARK_OPT_SMART) != 0);

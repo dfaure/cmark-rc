@@ -17,7 +17,8 @@ static const cmark_node_type node_types[] = {
     CMARK_NODE_PARAGRAPH, CMARK_NODE_HEADING,     CMARK_NODE_THEMATIC_BREAK,
     CMARK_NODE_TEXT,      CMARK_NODE_SOFTBREAK,   CMARK_NODE_LINEBREAK,
     CMARK_NODE_CODE,      CMARK_NODE_HTML_INLINE, CMARK_NODE_EMPH,
-    CMARK_NODE_STRONG,    CMARK_NODE_LINK,        CMARK_NODE_IMAGE};
+    CMARK_NODE_STRONG,    CMARK_NODE_STRIKE,      CMARK_NODE_LINK,
+    CMARK_NODE_IMAGE};
 static const int num_node_types = sizeof(node_types) / sizeof(*node_types);
 
 static void test_md_to_html(test_batch_runner *runner, const char *markdown,
@@ -481,7 +482,7 @@ void hierarchy(test_batch_runner *runner) {
   int all_inlines = (1 << CMARK_NODE_TEXT) | (1 << CMARK_NODE_SOFTBREAK) |
                     (1 << CMARK_NODE_LINEBREAK) | (1 << CMARK_NODE_CODE) |
                     (1 << CMARK_NODE_HTML_INLINE) | (1 << CMARK_NODE_EMPH) |
-                    (1 << CMARK_NODE_STRONG) | (1 << CMARK_NODE_LINK) |
+                    (1 << CMARK_NODE_STRONG) | (1 << CMARK_NODE_STRIKE) | (1 << CMARK_NODE_LINK) |
                     (1 << CMARK_NODE_IMAGE);
 
   test_content(runner, CMARK_NODE_DOCUMENT, top_level_blocks);
@@ -500,6 +501,7 @@ void hierarchy(test_batch_runner *runner) {
   test_content(runner, CMARK_NODE_HTML_INLINE, 0);
   test_content(runner, CMARK_NODE_EMPH, all_inlines);
   test_content(runner, CMARK_NODE_STRONG, all_inlines);
+  test_content(runner, CMARK_NODE_STRIKE, all_inlines);
   test_content(runner, CMARK_NODE_LINK, all_inlines);
   test_content(runner, CMARK_NODE_IMAGE, all_inlines);
 }

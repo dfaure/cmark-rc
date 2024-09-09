@@ -8763,6 +8763,13 @@ If you want a link after a literal `!`, backslash-escape the
 <p>!<a href="/url" title="title">foo</a></p>
 ````````````````````````````````
 
+## Striked text
+
+```````````````````````````````` example
+Come ~now~ later
+.
+<p>Come <s>now</s> later</p>
+````````````````````````````````
 
 ## Autolinks
 
