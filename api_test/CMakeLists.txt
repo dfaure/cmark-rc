@@ -6,7 +6,7 @@ add_executable(api_test
 )
 cmark_add_compile_options(api_test)
 target_link_libraries(api_test PRIVATE
-  cmark)
+  cmark-rc)
 
 add_test(NAME api_test COMMAND api_test)
 if(WIN32)
