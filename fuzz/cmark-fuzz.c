@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cmark.h"
+#include "cmark-rc.h"
 
 int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   struct __attribute__((packed)) {

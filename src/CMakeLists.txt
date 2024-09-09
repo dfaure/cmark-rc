@@ -71,7 +71,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libcmark-rc.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 
 install(FILES
-  cmark.h
+  cmark-rc.h
   ${CMAKE_CURRENT_BINARY_DIR}/cmark-rc_export.h
   ${CMAKE_CURRENT_BINARY_DIR}/cmark-rc_version.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
