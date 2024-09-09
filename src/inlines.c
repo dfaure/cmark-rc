@@ -785,7 +785,7 @@ static delimiter *S_insert_emph(subject *subj, delimiter *opener,
 
   // create new emph or strong, and splice it in to our inlines
   // between the opener and closer
-  emph = use_delims == 1 ? make_emph(subj->mem) : make_strong(subj->mem);
+  emph = closer->delim_char == '_' ? make_emph(subj->mem) : make_strong(subj->mem);
 
   tmp = opener_inl->next;
   if (tmp && tmp != closer_inl) {
