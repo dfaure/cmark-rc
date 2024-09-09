@@ -1,4 +1,4 @@
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "chunk.h"
 
 #ifdef __cplusplus

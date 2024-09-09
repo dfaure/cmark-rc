@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "node.h"
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "iterator.h"
 
 static const int S_leaf_mask =

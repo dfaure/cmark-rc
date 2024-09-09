@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#include "cmark.h"
+#include "cmark-rc.h"
 
 #ifdef __cplusplus
 extern "C" {

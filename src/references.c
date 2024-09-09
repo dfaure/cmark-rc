@@ -1,4 +1,4 @@
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "utf8.h"
 #include "parser.h"
 #include "references.h"

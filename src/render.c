@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "buffer.h"
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "utf8.h"
 #include "render.h"
 #include "node.h"

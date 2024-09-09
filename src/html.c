@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "cmark_ctype.h"
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "node.h"
 #include "buffer.h"
 #include "houdini.h"

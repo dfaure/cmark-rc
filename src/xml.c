@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "node.h"
 #include "buffer.h"
 

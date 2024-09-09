@@ -1,6 +1,6 @@
 #include <cstdlib>
 
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "cplusplus.h"
 #include "harness.h"
 

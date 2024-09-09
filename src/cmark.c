@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "node.h"
 #include "houdini.h"
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "buffer.h"
 
 int cmark_version(void) { return CMARK_VERSION; }

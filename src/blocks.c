@@ -13,7 +13,7 @@
 
 #include "cmark_ctype.h"
 #include "parser.h"
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "node.h"
 #include "references.h"
 #include "utf8.h"

@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define CMARK_NO_SHORT_NAMES
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "node.h"
 
 #include "harness.h"

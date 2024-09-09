@@ -9,7 +9,7 @@ extern "C" {
 #include <stdint.h>
 #include <stdio.h>
 
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "buffer.h"
 
 typedef struct {

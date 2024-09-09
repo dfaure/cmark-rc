@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "cmark.h"
+#include "cmark-rc.h"
 #include "buffer.h"
 #include "cmark_ctype.h"
 
