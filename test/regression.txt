@@ -4,7 +4,8 @@ Issue #113: EOL character weirdness on Windows
 (Important: first line ends with CR + CR + LF)
 
 ```````````````````````````````` example
-line1
+line1
+
 line2
 .
 <p>line1</p>
@@ -71,7 +72,7 @@ Issue #177 - incorrect emphasis parsing
 ```````````````````````````````` example
 a***b* c*
 .
-<p>a*<em><em>b</em> c</em></p>
+<p>a*<strong><strong>b</strong> c</strong></p>
 ````````````````````````````````
 
 Issue #193 - unescaped left angle brackets in link destination
@@ -182,12 +183,12 @@ some other text
 </ul>
 ````````````````````````````````
 
-Issue #383 - emphasis parsing.
+Issue #383 - strong parsing.
 
 ```````````````````````````````` example
 *****Hello*world****
 .
-<p>**<em><strong>Hello<em>world</em></strong></em></p>
+<p>**<strong><strong>Hello<strong>world</strong></strong></strong></p>
 ````````````````````````````````
 
 Issue #424 - emphasis before links
@@ -195,7 +196,7 @@ Issue #424 - emphasis before links
 ```````````````````````````````` example
 *text* [link](#section)
 .
-<p><em>text</em> <a href="#section">link</a></p>
+<p><strong>text</strong> <a href="#section">link</a></p>
 ````````````````````````````````
 
 `<!doctype` is case-insensitive
@@ -231,12 +232,12 @@ _*__-_-
 
 _*xx-_-
 .
-<p><strong>!_!</strong></p>
-<p><strong>!x!</strong></p>
+<p><em>!_!</em></p>
+<p><em>!x!</em></p>
 <p><strong>!*!</strong></p>
 <hr />
-<p><em><em>__</em></em>*</p>
-<p><em><em>xx</em></em>*</p>
+<p><em><strong>__</strong></em>*</p>
+<p><em><strong>xx</strong></em>*</p>
 <p><em>*__-</em>-</p>
 <p><em>*xx-</em>-</p>
 ````````````````````````````````

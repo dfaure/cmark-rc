@@ -310,7 +310,7 @@ static void iterator(test_batch_runner *runner) {
 }
 
 static void iterator_delete(test_batch_runner *runner) {
-  static const char md[] = "a *b* c\n"
+  static const char md[] = "a _b_ c\n"
                            "\n"
                            "* item1\n"
                            "* item2\n"
@@ -539,7 +539,7 @@ static void render_html(test_batch_runner *runner) {
 
   cmark_node *paragraph = cmark_node_first_child(doc);
   html = cmark_render_html(paragraph, CMARK_OPT_DEFAULT);
-  STR_EQ(runner, html, "<p>foo <em>bar</em></p>\n", "render single paragraph");
+  STR_EQ(runner, html, "<p>foo <strong>bar</strong></p>\n", "render single paragraph");
   free(html);
 
   cmark_node *string = cmark_node_first_child(paragraph);
@@ -549,7 +549,7 @@ static void render_html(test_batch_runner *runner) {
 
   cmark_node *emph = cmark_node_next(string);
   html = cmark_render_html(emph, CMARK_OPT_DEFAULT);
-  STR_EQ(runner, html, "<em>bar</em>", "render inline with children");
+  STR_EQ(runner, html, "<strong>bar</strong>", "render inline with children");
   free(html);
 
   cmark_node_free(doc);
@@ -558,7 +558,7 @@ static void render_html(test_batch_runner *runner) {
 static void render_xml(test_batch_runner *runner) {
   char *xml;
 
-  static const char markdown[] = "foo *bar*\n"
+  static const char markdown[] = "foo _bar_\n"
                                  "\n"
                                  "control -\x0C-\n"
                                  "fffe -\xEF\xBF\xBE-\n"
@@ -611,7 +611,7 @@ static void render_xml(test_batch_runner *runner) {
 static void render_man(test_batch_runner *runner) {
   char *man;
 
-  static const char markdown[] = "foo *bar*\n"
+  static const char markdown[] = "foo _bar_\n"
                                  "\n"
                                  "- Lorem ipsum dolor sit amet,\n"
                                  "  consectetur adipiscing elit,\n"
@@ -652,7 +652,7 @@ static void render_man(test_batch_runner *runner) {
 static void render_latex(test_batch_runner *runner) {
   char *latex;
 
-  static const char markdown[] = "foo *bar* $%\n"
+  static const char markdown[] = "foo _bar_ $%\n"
                                  "\n"
                                  "- Lorem ipsum dolor sit amet,\n"
                                  "  consectetur adipiscing elit,\n"
@@ -697,7 +697,7 @@ static void render_latex(test_batch_runner *runner) {
 static void render_commonmark(test_batch_runner *runner) {
   char *commonmark;
 
-  static const char markdown[] = "> \\- foo *bar* \\*bar\\*\n"
+  static const char markdown[] = "> \\- foo _bar_ \\*bar\\*\n"
                                  "\n"
                                  "- Lorem ipsum dolor sit amet,\n"
                                  "  consectetur adipiscing elit,\n"
@@ -707,7 +707,7 @@ static void render_commonmark(test_batch_runner *runner) {
       cmark_parse_document(markdown, sizeof(markdown) - 1, CMARK_OPT_DEFAULT);
 
   commonmark = cmark_render_commonmark(doc, CMARK_OPT_DEFAULT, 26);
-  STR_EQ(runner, commonmark, "> \\- foo *bar* \\*bar\\*\n"
+  STR_EQ(runner, commonmark, "> \\- foo _bar_ \\*bar\\*\n"
                              "\n"
                              "  - Lorem ipsum dolor sit\n"
                              "    amet, consectetur\n"
@@ -719,7 +719,7 @@ static void render_commonmark(test_batch_runner *runner) {
          "render document with wrapping");
   free(commonmark);
   commonmark = cmark_render_commonmark(doc, CMARK_OPT_DEFAULT, 0);
-  STR_EQ(runner, commonmark, "> \\- foo *bar* \\*bar\\*\n"
+  STR_EQ(runner, commonmark, "> \\- foo _bar_ \\*bar\\*\n"
                              "\n"
                              "  - Lorem ipsum dolor sit amet,\n"
                              "    consectetur adipiscing elit,\n"
@@ -1018,9 +1018,9 @@ static void source_pos(test_batch_runner *runner) {
                       "<document sourcepos=\"1:1-10:20\" xmlns=\"http://commonmark.org/xml/1.0\">\n"
                       "  <heading sourcepos=\"1:1-1:14\" level=\"1\">\n"
                       "    <text sourcepos=\"1:3-1:6\" xml:space=\"preserve\">Hi *</text>\n"
-                      "    <emph sourcepos=\"1:7-1:13\">\n"
+                      "    <strong sourcepos=\"1:7-1:13\">\n"
                       "      <text sourcepos=\"1:8-1:12\" xml:space=\"preserve\">there</text>\n"
-                      "    </emph>\n"
+                      "    </strong>\n"
                       "    <text sourcepos=\"1:14-1:14\" xml:space=\"preserve\">.</text>\n"
                       "  </heading>\n"
                       "  <paragraph sourcepos=\"3:1-4:42\">\n"
@@ -1066,7 +1066,7 @@ static void source_pos(test_batch_runner *runner) {
 static void source_pos_inlines(test_batch_runner *runner) {
   {
     static const char markdown[] =
-      "*first*\n"
+      "_first_\n"
       "second\n";
 
     cmark_node *doc = cmark_parse_document(markdown, sizeof(markdown) - 1, CMARK_OPT_DEFAULT);
@@ -1088,8 +1088,8 @@ static void source_pos_inlines(test_batch_runner *runner) {
   }
   {
     static const char markdown[] =
-      "*first\n"
-      "second*\n";
+      "_first\n"
+      "second_\n";
 
     cmark_node *doc = cmark_parse_document(markdown, sizeof(markdown) - 1, CMARK_OPT_DEFAULT);
     char *xml = cmark_render_xml(doc, CMARK_OPT_DEFAULT | CMARK_OPT_SOURCEPOS);

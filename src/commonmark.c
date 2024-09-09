@@ -164,7 +164,6 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
   char fencechar[2] = {'\0', '\0'};
   size_t code_len;
   char listmarker[LISTMARKER_SIZE];
-  const char *emph_delim;
   bool first_in_list_item;
   bufsize_t marker_width;
   bool has_nonspace;
@@ -383,25 +382,17 @@ static int S_render_node(cmark_renderer *renderer, cmark_node *node,
 
   case CMARK_NODE_STRONG:
     if (entering) {
-      LIT("**");
+      LIT("*");
     } else {
-      LIT("**");
+      LIT("*");
     }
     break;
 
   case CMARK_NODE_EMPH:
-    // If we have EMPH(EMPH(x)), we need to use *_x_*
-    // because **x** is STRONG(x):
-    if (node->parent && node->parent->type == CMARK_NODE_EMPH &&
-        node->next == NULL && node->prev == NULL) {
-      emph_delim = "_";
-    } else {
-      emph_delim = "*";
-    }
     if (entering) {
-      LIT(emph_delim);
+      LIT("_");
     } else {
-      LIT(emph_delim);
+      LIT("_");
     }
     break;
 

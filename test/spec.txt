@@ -532,9 +532,9 @@ not have their usual Markdown meanings:
 If a backslash is itself escaped, the following character is not:
 
 ```````````````````````````````` example
-\\*emphasis*
+\\*strong*
 .
-<p>\<em>emphasis</em></p>
+<p>\<strong>strong</strong></p>
 ````````````````````````````````
 
 
@@ -785,7 +785,7 @@ documents.
 *foo*
 .
 <p>*foo*
-<em>foo</em></p>
+<strong>foo</strong></p>
 ````````````````````````````````
 
 ```````````````````````````````` example
@@ -1010,7 +1010,7 @@ So, this is not a thematic break:
 ```````````````````````````````` example
  *-*
 .
-<p><em>-</em></p>
+<p><strong>-</strong></p>
 ````````````````````````````````
 
 
@@ -1167,7 +1167,7 @@ Contents are parsed as inlines:
 ```````````````````````````````` example
 # foo *bar* \*baz\*
 .
-<h1>foo <em>bar</em> *baz*</h1>
+<h1>foo <strong>bar</strong> *baz*</h1>
 ````````````````````````````````
 
 
@@ -1351,8 +1351,8 @@ Foo *bar*
 Foo *bar*
 ---------
 .
-<h1>Foo <em>bar</em></h1>
-<h2>Foo <em>bar</em></h2>
+<h1>Foo <strong>bar</strong></h1>
+<h2>Foo <strong>bar</strong></h2>
 ````````````````````````````````
 
 
@@ -1363,8 +1363,8 @@ Foo *bar
 baz*
 ====
 .
-<h1>Foo <em>bar
-baz</em></h1>
+<h1>Foo <strong>bar
+baz</strong></h1>
 ````````````````````````````````
 
 The contents are the result of parsing the headings's raw
@@ -1377,8 +1377,8 @@ spaces or tabs.
 baz*→
 ====
 .
-<h1>Foo <em>bar
-baz</em></h1>
+<h1>Foo <strong>bar
+baz</strong></h1>
 ````````````````````````````````
 
 
@@ -2508,7 +2508,7 @@ Here we have two HTML blocks with a Markdown paragraph between them:
 </DIV>
 .
 <DIV CLASS="foo">
-<p><em>Markdown</em></p>
+<p><strong>Markdown</strong></p>
 </DIV>
 ````````````````````````````````
 
@@ -2547,7 +2547,7 @@ An open tag need not be closed:
 .
 <div>
 *foo*
-<p><em>bar</em></p>
+<p><strong>bar</strong></p>
 ````````````````````````````````
 
 
@@ -2702,7 +2702,7 @@ line).  So the contents get interpreted as CommonMark:
 </del>
 .
 <del>
-<p><em>foo</em></p>
+<p><strong>foo</strong></p>
 </del>
 ````````````````````````````````
 
@@ -2715,7 +2715,7 @@ rather than an [HTML block].)
 ```````````````````````````````` example
 <del>*foo*</del>
 .
-<p><del><em>foo</em></del></p>
+<p><del><strong>foo</strong></del></p>
 ````````````````````````````````
 
 
@@ -2858,7 +2858,7 @@ The end tag can occur on the same line as the start tag:
 *foo*
 .
 <style>p{color:red;}</style>
-<p><em>foo</em></p>
+<p><strong>foo</strong></p>
 ````````````````````````````````
 
 
@@ -2867,7 +2867,7 @@ The end tag can occur on the same line as the start tag:
 *baz*
 .
 <!-- foo -->*bar*
-<p><em>baz</em></p>
+<p><strong>baz</strong></p>
 ````````````````````````````````
 
 
@@ -3068,23 +3068,23 @@ Compare:
 ```````````````````````````````` example
 <div>
 
-*Emphasized* text.
+*Strong* text.
 
 </div>
 .
 <div>
-<p><em>Emphasized</em> text.</p>
+<p><strong>Strong</strong> text.</p>
 </div>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 <div>
-*Emphasized* text.
+*Strong* text.
 </div>
 .
 <div>
-*Emphasized* text.
+*Strong* text.
 </div>
 ````````````````````````````````
 
@@ -6308,7 +6308,7 @@ Rule 1:
 ```````````````````````````````` example
 *foo bar*
 .
-<p><em>foo bar</em></p>
+<p><strong>foo bar</strong></p>
 ````````````````````````````````
 
 
@@ -6357,19 +6357,19 @@ Unicode symbols count as punctuation, too:
 ````````````````````````````````
 
 
-Intraword emphasis with `*` is permitted:
+Intraword emphasis with `_` is NOT permitted:
 
 ```````````````````````````````` example
-foo*bar*
+foo_bar_
 .
-<p>foo<em>bar</em></p>
+<p>foo_bar_</p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
-5*6*78
+5_6_78
 .
-<p>5<em>6</em>78</p>
+<p>5_6_78</p>
 ````````````````````````````````
 
 
@@ -6479,7 +6479,7 @@ A line ending also counts as whitespace:
 ````````````````````````````````
 
 
-This is not emphasis, because the second `*` is
+This is not strong, because the second `*` is
 preceded by punctuation and followed by an alphanumeric
 (hence it is not part of a [right-flanking delimiter run]:
 
@@ -6496,16 +6496,16 @@ with this example:
 ```````````````````````````````` example
 *(*foo*)*
 .
-<p><em>(<em>foo</em>)</em></p>
+<p><strong>(<strong>foo</strong>)</strong></p>
 ````````````````````````````````
 
 
-Intraword emphasis with `*` is allowed:
+Intraword strong with `*` is allowed:
 
 ```````````````````````````````` example
 *foo*bar
 .
-<p><em>foo</em>bar</p>
+<p><strong>foo</strong>bar</p>
 ````````````````````````````````
 
 
@@ -6584,6 +6584,19 @@ Rule 5:
 ````````````````````````````````
 
 
+```````````````````````````````` example
+_*foo bar*_
+.
+<p><em><strong>foo bar</strong></em></p>
+````````````````````````````````
+
+
+```````````````````````````````` example
+*_foo bar_*
+.
+<p><strong><em>foo bar</em></strong></p>
+````````````````````````````````
+
 This is not strong emphasis, because the opening delimiter is
 followed by whitespace:
 
@@ -6605,7 +6618,7 @@ a**"foo"**
 ````````````````````````````````
 
 
-Intraword strong emphasis with `**` is permitted:
+Intraword strong with `**` is permitted:
 
 ```````````````````````````````` example
 foo**bar**
@@ -6619,11 +6632,11 @@ Rule 6:
 ```````````````````````````````` example
 __foo bar__
 .
-<p><strong>foo bar</strong></p>
+<p><em>foo bar</em></p>
 ````````````````````````````````
 
 
-This is not strong emphasis, because the opening delimiter is
+This is not emphasis, because the opening delimiter is
 followed by whitespace:
 
 ```````````````````````````````` example
@@ -6679,18 +6692,18 @@ foo__bar__
 ```````````````````````````````` example
 __foo, __bar__, baz__
 .
-<p><strong>foo, <strong>bar</strong>, baz</strong></p>
+<p><em>foo, <em>bar</em>, baz</em></p>
 ````````````````````````````````
 
 
-This is strong emphasis, even though the opening delimiter is
+This is emphasis, even though the opening delimiter is
 both left- and right-flanking, because it is preceded by
 punctuation:
 
 ```````````````````````````````` example
 foo-__(bar)__
 .
-<p>foo-<strong>(bar)</strong></p>
+<p>foo-<em>(bar)</em></p>
 ````````````````````````````````
 
 
@@ -6724,15 +6737,15 @@ The point of this restriction is more easily appreciated
 with these examples:
 
 ```````````````````````````````` example
-*(**foo**)*
+_(**foo**)_
 .
 <p><em>(<strong>foo</strong>)</em></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
-**Gomphocarpus (*Gomphocarpus physocarpus*, syn.
-*Asclepias physocarpa*)**
+**Gomphocarpus (_Gomphocarpus physocarpus_, syn.
+_Asclepias physocarpa_)**
 .
 <p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
 <em>Asclepias physocarpa</em>)</strong></p>
@@ -6740,13 +6753,13 @@ with these examples:
 
 
 ```````````````````````````````` example
-**foo "*bar*" foo**
+**foo "_bar_" foo**
 .
 <p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
 ````````````````````````````````
 
 
-Intraword emphasis:
+Intraword strong:
 
 ```````````````````````````````` example
 **foo**bar
@@ -6783,11 +6796,11 @@ with this example:
 ```````````````````````````````` example
 _(__foo__)_
 .
-<p><em>(<strong>foo</strong>)</em></p>
+<p><em>(<em>foo</em>)</em></p>
 ````````````````````````````````
 
 
-Intraword strong emphasis is forbidden with `__`:
+Intraword emphasis is forbidden with `__`:
 
 ```````````````````````````````` example
 __foo__bar
@@ -6806,18 +6819,18 @@ __пристаням__стремятся
 ```````````````````````````````` example
 __foo__bar__baz__
 .
-<p><strong>foo__bar__baz</strong></p>
+<p><em>foo__bar__baz</em></p>
 ````````````````````````````````
 
 
-This is strong emphasis, even though the closing delimiter is
+This is emphasis, even though the closing delimiter is
 both left- and right-flanking, because it is followed by
 punctuation:
 
 ```````````````````````````````` example
 __(bar)__.
 .
-<p><strong>(bar)</strong>.</p>
+<p><em>(bar)</em>.</p>
 ````````````````````````````````
 
 
@@ -6829,7 +6842,7 @@ emphasized span.
 ```````````````````````````````` example
 *foo [bar](/url)*
 .
-<p><em>foo <a href="/url">bar</a></em></p>
+<p><strong>foo <a href="/url">bar</a></strong></p>
 ````````````````````````````````
 
 
@@ -6837,8 +6850,8 @@ emphasized span.
 *foo
 bar*
 .
-<p><em>foo
-bar</em></p>
+<p><strong>foo
+bar</strong></p>
 ````````````````````````````````
 
 
@@ -6846,9 +6859,9 @@ In particular, emphasis and strong emphasis can be nested
 inside emphasis:
 
 ```````````````````````````````` example
-_foo __bar__ baz_
+_foo _*bar*_ baz_
 .
-<p><em>foo <strong>bar</strong> baz</em></p>
+<p><em>foo <em><strong>bar</strong></em> baz</em></p>
 ````````````````````````````````
 
 
@@ -6869,32 +6882,32 @@ __foo_ bar_
 ```````````````````````````````` example
 *foo *bar**
 .
-<p><em>foo <em>bar</em></em></p>
+<p><strong>foo <strong>bar</strong></strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo **bar** baz*
 .
-<p><em>foo <strong>bar</strong> baz</em></p>
+<p><strong>foo <strong>bar</strong> baz</strong></p>
 ````````````````````````````````
 
 ```````````````````````````````` example
 *foo**bar**baz*
 .
-<p><em>foo<strong>bar</strong>baz</em></p>
+<p><strong>foo<strong>bar</strong>baz</strong></p>
 ````````````````````````````````
 
 Note that in the preceding case, the interpretation
 
 ``` markdown
-<p><em>foo</em><em>bar<em></em>baz</em></p>
+<p><strong>foo</strong><strong>bar<strong></strong>baz</strong></p>
 ```
 
 
 is precluded by the condition that a delimiter that
 can both open and close (like the `*` after `foo`)
-cannot form emphasis if the sum of the lengths of
+cannot form strong if the sum of the lengths of
 the delimiter runs containing the opening and
 closing delimiters is a multiple of 3 unless
 both lengths are multiples of 3.
@@ -6906,7 +6919,7 @@ emphasis sections in this example:
 ```````````````````````````````` example
 *foo**bar*
 .
-<p><em>foo**bar</em></p>
+<p><strong>foo**bar</strong></p>
 ````````````````````````````````
 
 
@@ -6919,21 +6932,21 @@ omitted:
 ```````````````````````````````` example
 ***foo** bar*
 .
-<p><em><strong>foo</strong> bar</em></p>
+<p><strong><strong>foo</strong> bar</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo **bar***
 .
-<p><em>foo <strong>bar</strong></em></p>
+<p><strong>foo <strong>bar</strong></strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo**bar***
 .
-<p><em>foo<strong>bar</strong></em></p>
+<p><strong>foo<strong>bar</strong></strong></p>
 ````````````````````````````````
 
 
@@ -6944,7 +6957,7 @@ they can match to create emphasis:
 ```````````````````````````````` example
 foo***bar***baz
 .
-<p>foo<em><strong>bar</strong></em>baz</p>
+<p>foo<strong><strong>bar</strong></strong>baz</p>
 ````````````````````````````````
 
 ```````````````````````````````` example
@@ -6959,30 +6972,30 @@ Indefinite levels of nesting are possible:
 ```````````````````````````````` example
 *foo **bar *baz* bim** bop*
 .
-<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
+<p><strong>foo <strong>bar <strong>baz</strong> bim</strong> bop</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo [*bar*](/url)*
 .
-<p><em>foo <a href="/url"><em>bar</em></a></em></p>
+<p><strong>foo <a href="/url"><strong>bar</strong></a></strong></p>
 ````````````````````````````````
 
 
-There can be no empty emphasis or strong emphasis:
+There can be no empty strong span:
 
 ```````````````````````````````` example
-** is not an empty emphasis
+** is not an empty strong
 .
-<p>** is not an empty emphasis</p>
+<p>** is not an empty strong</p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
-**** is not an empty strong emphasis
+__ is not an empty emphasis
 .
-<p>**** is not an empty strong emphasis</p>
+<p>__ is not an empty emphasis</p>
 ````````````````````````````````
 
 
@@ -7008,27 +7021,25 @@ bar</strong></p>
 ````````````````````````````````
 
 
-In particular, emphasis and strong emphasis can be nested
-inside strong emphasis:
 
 ```````````````````````````````` example
 __foo _bar_ baz__
 .
-<p><strong>foo <em>bar</em> baz</strong></p>
+<p><em>foo <em>bar</em> baz</em></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 __foo __bar__ baz__
 .
-<p><strong>foo <strong>bar</strong> baz</strong></p>
+<p><em>foo <em>bar</em> baz</em></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 ____foo__ bar__
 .
-<p><strong><strong>foo</strong> bar</strong></p>
+<p><em><em>foo</em> bar</em></p>
 ````````````````````````````````
 
 
@@ -7042,28 +7053,28 @@ ____foo__ bar__
 ```````````````````````````````` example
 **foo *bar* baz**
 .
-<p><strong>foo <em>bar</em> baz</strong></p>
+<p><strong>foo <strong>bar</strong> baz</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 **foo*bar*baz**
 .
-<p><strong>foo<em>bar</em>baz</strong></p>
+<p><strong>foo<strong>bar</strong>baz</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 ***foo* bar**
 .
-<p><strong><em>foo</em> bar</strong></p>
+<p><strong><strong>foo</strong> bar</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 **foo *bar***
 .
-<p><strong>foo <em>bar</em></strong></p>
+<p><strong>foo <strong>bar</strong></strong></p>
 ````````````````````````````````
 
 
@@ -7073,19 +7084,19 @@ Indefinite levels of nesting are possible:
 **foo *bar **baz**
 bim* bop**
 .
-<p><strong>foo <em>bar <strong>baz</strong>
-bim</em> bop</strong></p>
+<p><strong>foo <strong>bar <strong>baz</strong>
+bim</strong> bop</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 **foo [*bar*](/url)**
 .
-<p><strong>foo <a href="/url"><em>bar</em></a></strong></p>
+<p><strong>foo <a href="/url"><strong>bar</strong></a></strong></p>
 ````````````````````````````````
 
 
-There can be no empty emphasis or strong emphasis:
+There can be no empty emphasis:
 
 ```````````````````````````````` example
 __ is not an empty emphasis
@@ -7095,9 +7106,9 @@ __ is not an empty emphasis
 
 
 ```````````````````````````````` example
-____ is not an empty strong emphasis
+____ is not an empty emphasis
 .
-<p>____ is not an empty strong emphasis</p>
+<p>____ is not an empty emphasis</p>
 ````````````````````````````````
 
 
@@ -7114,14 +7125,14 @@ foo ***
 ```````````````````````````````` example
 foo *\**
 .
-<p>foo <em>*</em></p>
+<p>foo <strong>*</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 foo *_*
 .
-<p>foo <em>_</em></p>
+<p>foo <strong>_</strong></p>
 ````````````````````````````````
 
 
@@ -7153,14 +7164,14 @@ emphasis, rather than inside it:
 ```````````````````````````````` example
 **foo*
 .
-<p>*<em>foo</em></p>
+<p>*<strong>foo</strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo**
 .
-<p><em>foo</em>*</p>
+<p><strong>foo</strong>*</p>
 ````````````````````````````````
 
 
@@ -7174,7 +7185,7 @@ emphasis, rather than inside it:
 ```````````````````````````````` example
 ****foo*
 .
-<p>***<em>foo</em></p>
+<p>***<strong>foo</strong></p>
 ````````````````````````````````
 
 
@@ -7188,7 +7199,7 @@ emphasis, rather than inside it:
 ```````````````````````````````` example
 *foo****
 .
-<p><em>foo</em>***</p>
+<p><strong>foo</strong>***</p>
 ````````````````````````````````
 
 
@@ -7226,14 +7237,14 @@ foo _____
 ```````````````````````````````` example
 foo __\___
 .
-<p>foo <strong>_</strong></p>
+<p>foo <em>_</em></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 foo __*__
 .
-<p>foo <strong>*</strong></p>
+<p>foo <em>*</em></p>
 ````````````````````````````````
 
 
@@ -7258,7 +7269,7 @@ _foo__
 ```````````````````````````````` example
 ___foo__
 .
-<p>_<strong>foo</strong></p>
+<p>_<em>foo</em></p>
 ````````````````````````````````
 
 
@@ -7272,7 +7283,7 @@ ____foo_
 ```````````````````````````````` example
 __foo___
 .
-<p><strong>foo</strong>_</p>
+<p><em>foo</em>_</p>
 ````````````````````````````````
 
 
@@ -7296,25 +7307,25 @@ emphasis, you must use different delimiters:
 ```````````````````````````````` example
 *_foo_*
 .
-<p><em><em>foo</em></em></p>
+<p><strong><em>foo</em></strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 __foo__
 .
-<p><strong>foo</strong></p>
+<p><em>foo</em></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 _*foo*_
 .
-<p><em><em>foo</em></em></p>
+<p><em><strong>foo</strong></em></p>
 ````````````````````````````````
 
 
-However, strong emphasis within strong emphasis is possible without
+However, strong within strong is possible without
 switching delimiters:
 
 ```````````````````````````````` example
@@ -7327,7 +7338,7 @@ switching delimiters:
 ```````````````````````````````` example
 ____foo____
 .
-<p><strong><strong>foo</strong></strong></p>
+<p><em><em>foo</em></em></p>
 ````````````````````````````````
 
 
@@ -7347,14 +7358,14 @@ Rule 14:
 ```````````````````````````````` example
 ***foo***
 .
-<p><em><strong>foo</strong></em></p>
+<p><strong><strong>foo</strong></strong></p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 _____foo_____
 .
-<p><em><strong><strong>foo</strong></strong></em></p>
+<p><em><em><em>foo</em></em></em></p>
 ````````````````````````````````
 
 
@@ -7363,14 +7374,14 @@ Rule 15:
 ```````````````````````````````` example
 *foo _bar* baz_
 .
-<p><em>foo _bar</em> baz_</p>
+<p><strong>foo _bar</strong> baz_</p>
 ````````````````````````````````
 
 
 ```````````````````````````````` example
 *foo __bar *baz bim__ bam*
 .
-<p><em>foo <strong>bar *baz bim</strong> bam</em></p>
+<p><strong>foo <em>bar *baz bim</em> bam</strong></p>
 ````````````````````````````````
 
 
@@ -7386,7 +7397,7 @@ Rule 16:
 ```````````````````````````````` example
 *foo *bar baz*
 .
-<p>*foo <em>bar baz</em></p>
+<p>*foo <strong>bar baz</strong></p>
 ````````````````````````````````
 
 
@@ -7430,7 +7441,7 @@ __<a href="__">
 ```````````````````````````````` example
 *a `*`*
 .
-<p><em>a <code>*</code></em></p>
+<p><strong>a <code>*</code></strong></p>
 ````````````````````````````````
 
 
@@ -7870,7 +7881,7 @@ The link text may contain inline content:
 ```````````````````````````````` example
 [link *foo **bar** `#`*](/uri)
 .
-<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+<p><a href="/uri">link <strong>foo <strong>bar</strong> <code>#</code></strong></a></p>
 ````````````````````````````````
 
 
@@ -7893,7 +7904,7 @@ However, links may not contain other links, at any level of nesting.
 ```````````````````````````````` example
 [foo *[bar [baz](/uri)](/uri)*](/uri)
 .
-<p>[foo <em>[bar <a href="/uri">baz</a>](/uri)</em>](/uri)</p>
+<p>[foo <strong>[bar <a href="/uri">baz</a>](/uri)</strong>](/uri)</p>
 ````````````````````````````````
 
 
@@ -7927,7 +7938,7 @@ precedence:
 ```````````````````````````````` example
 *foo [bar* baz]
 .
-<p><em>foo [bar</em> baz]</p>
+<p><strong>foo [bar</strong> baz]</p>
 ````````````````````````````````
 
 
@@ -8026,7 +8037,7 @@ The link text may contain inline content:
 
 [ref]: /uri
 .
-<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+<p><a href="/uri">link <strong>foo <strong>bar</strong> <code>#</code></strong></a></p>
 ````````````````````````````````
 
 
@@ -8055,7 +8066,7 @@ However, links may not contain other links, at any level of nesting.
 
 [ref]: /uri
 .
-<p>[foo <em>bar <a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>
+<p>[foo <strong>bar <a href="/uri">baz</a></strong>]<a href="/uri">ref</a></p>
 ````````````````````````````````
 
 
@@ -8328,7 +8339,7 @@ provided by the matching reference link definition.  Thus,
 
 [*foo* bar]: /url "title"
 .
-<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+<p><a href="/url" title="title"><strong>foo</strong> bar</a></p>
 ````````````````````````````````
 
 
@@ -8381,7 +8392,7 @@ Thus, `[foo]` is equivalent to `[foo][]`.
 
 [*foo* bar]: /url "title"
 .
-<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+<p><a href="/url" title="title"><strong>foo</strong> bar</a></p>
 ````````````````````````````````
 
 
@@ -8390,7 +8401,7 @@ Thus, `[foo]` is equivalent to `[foo][]`.
 
 [*foo* bar]: /url "title"
 .
-<p>[<a href="/url" title="title"><em>foo</em> bar</a>]</p>
+<p>[<a href="/url" title="title"><strong>foo</strong> bar</a>]</p>
 ````````````````````````````````
 
 
@@ -9268,8 +9279,8 @@ that allow inline content:
 *foo  
 bar*
 .
-<p><em>foo<br />
-bar</em></p>
+<p><strong>foo<br />
+bar</strong></p>
 ````````````````````````````````
 
 
@@ -9277,8 +9288,8 @@ bar</em></p>
 *foo\
 bar*
 .
-<p><em>foo<br />
-bar</em></p>
+<p><strong>foo<br />
+bar</strong></p>
 ````````````````````````````````
 
 
