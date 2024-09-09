@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <cmark-rc_export.h>
-#include <cmark_version.h>
+#include <cmark-rc_version.h>
 
 #ifdef __cplusplus
 extern "C" {
