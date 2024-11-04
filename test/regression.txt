@@ -244,17 +244,17 @@ _*xx-_-
 
 commonmark.js #277:
 ```````````````````````````````` example
-```language-r
+```
 x <- 1
 ```
 
-```r
+```
 x <- 1
 ```
 .
-<pre><code class="language-r">x &lt;- 1
+<pre><code>x &lt;- 1
 </code></pre>
-<pre><code class="language-r">x &lt;- 1
+<pre><code>x &lt;- 1
 </code></pre>
 ````````````````````````````````
 
