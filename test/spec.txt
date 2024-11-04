@@ -615,8 +615,7 @@ link references, and [info strings] in [fenced code blocks]:
 foo
 ```
 .
-<pre><code> foo\+bar
-foo
+<pre><code class="language-foo+bar">foo
 </code></pre>
 ````````````````````````````````
 
@@ -754,8 +753,7 @@ URLs, [link titles], and [fenced code block][] [info strings]:
 foo
 ```
 .
-<pre><code> f&amp;ouml;&amp;ouml;
-foo
+<pre><code class="language-föö">foo
 </code></pre>
 ````````````````````````````````
 
@@ -2280,13 +2278,12 @@ bar
 ````````````````````````````````
 
 
-Markdown usually says:
 An [info string] can be provided after the opening code fence.
 Although this spec doesn't mandate any particular treatment of
 the info string, the first word is typically used to specify
-the language of the code block.
-
-But Rocket-Chat doesn't treat it as such, it's just part of the code.
+the language of the code block. In HTML output, the language is
+normally indicated by adding a class to the `code` element consisting
+of `language-` followed by the language name.
 
 ```````````````````````````````` example
 ```ruby
@@ -2295,21 +2292,32 @@ def foo(x)
 end
 ```
 .
-<pre><code>ruby
-def foo(x)
+<pre><code class="language-ruby">def foo(x)
   return 3
 end
 </code></pre>
 ````````````````````````````````
 
 
+```````````````````````````````` example
+~~~~    ruby startline=3 $%@#$
+def foo(x)
+  return 3
+end
+~~~~~~~
+.
+<pre><code class="language-ruby">def foo(x)
+  return 3
+end
+</code></pre>
+````````````````````````````````
+
 
 ```````````````````````````````` example
 ````;
 ````
 .
-<pre><code>;
-</code></pre>
+<pre><code class="language-;"></code></pre>
 ````````````````````````````````
 
 
@@ -2331,8 +2339,7 @@ foo</p>
 foo
 ~~~
 .
-<pre><code> aa ``` ~~~
-foo
+<pre><code class="language-aa">foo
 </code></pre>
 ````````````````````````````````
 

@@ -135,9 +135,9 @@ static void accessors(test_batch_runner *runner) {
          "get_list_tight loose");
 
   cmark_node *fenced = cmark_node_next(ordered_list);
-  STR_EQ(runner, cmark_node_get_literal(fenced), " lang\nfenced\n",
+  STR_EQ(runner, cmark_node_get_literal(fenced), "fenced\n",
          "get_literal fenced code");
-  STR_EQ(runner, cmark_node_get_fence_info(fenced), "", "get_fence_info");
+  STR_EQ(runner, cmark_node_get_fence_info(fenced), "lang", "get_fence_info");
 
   cmark_node *code = cmark_node_next(fenced);
   STR_EQ(runner, cmark_node_get_literal(code), "code\n",
