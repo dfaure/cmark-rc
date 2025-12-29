@@ -2071,7 +2071,8 @@ Unclosed code blocks are closed by the end of the document
 ```````````````````````````````` example
 ```
 .
-<pre><code></code></pre>
+```
+```
 ````````````````````````````````
 
 
@@ -2116,13 +2117,23 @@ A code block can have all empty lines as its content:
 ````````````````````````````````
 
 
-A code block can be empty:
+A code block cannot be empty:
 
 ```````````````````````````````` example
 ```
 ```
 .
-<pre><code></code></pre>
+```
+```
+````````````````````````````````
+
+
+```````````````````````````````` example
+```something here
+```
+.
+```something here
+```
 ````````````````````````````````
 
 
@@ -3854,10 +3865,12 @@ foo
 ```
 .
 <blockquote>
-<pre><code></code></pre>
+  ```
+  ```
 </blockquote>
 <p>foo</p>
-<pre><code></code></pre>
+```
+```
 ````````````````````````````````
 
 
